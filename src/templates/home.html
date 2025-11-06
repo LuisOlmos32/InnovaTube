@@ -1,0 +1,52 @@
+{% extends './layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+  <h2>Bienvenido, {{ current_user.username }}</h2>
+  <a class="btn btn-secondary mb-3" href="{{ url_for('logout') }}">Cerrar sesión</a>
+  <a class="btn btn-warning mb-3 ms-2" href="{{ url_for('favorites') }}">Ver Favoritos </a>
+
+  <!-- Buscador -->
+  <form method="get" action="{{ url_for('home') }}" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar videos..." required>
+      <button class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+  </form>
+
+  <!-- Mostrar los videos -->
+  <div class="row">
+    {% for video in videos %}
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-sm">
+          <img src="{{ video.thumbnail }}" class="card-img-top" alt="{{ video.title }}">
+          <div class="card-body text-center">
+            <h6 class="card-title">{{ video.title }}</h6>
+
+            {% if video.id in user_favorites %}
+              
+              <form method="POST" action="{{ url_for('remove_favorite') }}">
+                <input type="hidden" name="video_id" value="{{ video.id }}">
+                <button class="btn btn-danger btn-sm" type="submit">Quitar favorito</button>
+              </form>
+            {% else %}
+              
+              <form method="POST" action="{{ url_for('add_favorite') }}">
+                 
+                <input type="hidden" name="video_id" value="{{ video.id }}">
+                <input type="hidden" name="title" value="{{ video.title }}">
+                <input type="hidden" name="thumbnail" value="{{ video.thumbnail }}">
+                <button class="btn btn-outline-danger btn-sm" type="submit">Agregar favorito</button>
+              </form>
+            {% endif %}
+
+            <a href="https://www.youtube.com/watch?v={{ video.id }}" target="_blank" class="btn btn-primary btn-sm mt-2">Ver en YouTube</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

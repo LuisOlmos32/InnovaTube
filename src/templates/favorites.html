@@ -1,0 +1,42 @@
+{% extends './layout.html' %}
+
+{% block title %} Favoritos {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+  <h2>Tus videos favoritos</h2>
+  <a class="btn btn-secondary mb-3" href="{{ url_for('home') }}">← Volver al Home</a>
+
+  <!-- Buscador de favoritos -->
+  <form method="get" action="{{ url_for('favorites') }}" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar en favoritos..." value="{{ request.args.get('q', '') }}">
+      <button class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+  </form>
+
+  <div class="row">
+    {% if favorites %}
+      {% for fav in favorites %}
+        <div class="col-md-3 mb-4">
+          <div class="card shadow-sm">
+            <img src="{{ fav[4] }}" class="card-img-top" alt="{{ fav[3] }}">
+            <div class="card-body text-center">
+              <h6 class="card-title">{{ fav[3] }}</h6>
+
+              <form method="POST" action="{{ url_for('remove_favorite') }}">
+                <input type="hidden" name="video_id" value="{{ fav[2] }}">
+                <button class="btn btn-danger btn-sm" type="submit">Quitar favorito</button>
+              </form>
+
+              <a href="https://www.youtube.com/watch?v={{ fav[2] }}" target="_blank" class="btn btn-primary btn-sm mt-2">Ver en YouTube</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No tienes videos favoritos guardados.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
