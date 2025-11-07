@@ -1,12 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
+
+
+#configuracion para el deploy
 from src.config import config
+from flask_wtf import CSRFProtect
+
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from googleapiclient.discovery import build
 from werkzeug.security import generate_password_hash
 import requests
 
+#configuracion para el deploy
 # Models 
 from src.models.ModelUser import ModelUser
 # Entities
