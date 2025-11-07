@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
+from flask_sqlalchemy import SQLAlchemy
 
 
 #configuracion para el deploy
@@ -23,7 +24,7 @@ from src.models.entities.User import User
 #configuracion principal
 app = Flask(__name__)
 csrf = CSRFProtect()
-db = MySQL(app)
+db = SQLAlchemy(app)
 login_manager_app = LoginManager(app)
 
 YOUTUBE_API_KEY = "AIzaSyA48YcvnD7W3UhpBtWd3IyNpKCP6uJbZA4"  # api de youtube
