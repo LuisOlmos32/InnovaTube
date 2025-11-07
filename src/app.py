@@ -4,7 +4,9 @@ from flask_mysqldb import MySQL
 
 #configuracion para el deploy
 from src.config import config
+
 from flask_wtf import CSRFProtect
+
 
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
