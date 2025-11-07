@@ -1,4 +1,4 @@
-from models.entities.User import User
+from src.models.entities.User import User
 
 #>**********************Register
 @classmethod
