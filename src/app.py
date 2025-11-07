@@ -118,7 +118,7 @@ def home():
     except Exception as e:
         print("Error al obtener videos:", e)
 
-   #
+   #f
     cursor = db.connection.cursor()
     sql = "SELECT video_id FROM favorites WHERE user_id = %s"
     cursor.execute(sql, (int(current_user.id),))
