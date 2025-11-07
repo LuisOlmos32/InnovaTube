@@ -8,9 +8,9 @@ from werkzeug.security import generate_password_hash
 import requests
 
 # Models 
-from models.ModelUser import ModelUser
+from src.models.ModelUser import ModelUser
 # Entities
-from models.entities.User import User
+from src.models.entities.User import User
 
 #configuracion principal
 app = Flask(__name__)
