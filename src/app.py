@@ -15,6 +15,7 @@ from googleapiclient.discovery import build
 from werkzeug.security import generate_password_hash
 import requests
 
+
 #configuracion para el deploy
 # Models 
 from src.models.ModelUser import ModelUser
@@ -24,7 +25,7 @@ from src.models.entities.User import User
 #configuracion principal
 app = Flask(__name__)
 csrf = CSRFProtect()
-db = SQLAlchemy(app)
+db = MySQL(app)
 login_manager_app = LoginManager(app)
 
 YOUTUBE_API_KEY = "AIzaSyA48YcvnD7W3UhpBtWd3IyNpKCP6uJbZA4"  # api de youtube
