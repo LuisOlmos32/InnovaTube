@@ -12,7 +12,7 @@ app = Flask(__name__)
 csrf = CSRFProtect()
 
 # Configuración de la base de datos para Render (usando variable de entorno)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI", "sqlite:///local.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI", "postgresql://flask_login_6tjz_user:usFK1NDzJBS6baJktDwNAczd4N0wQze0@dpg-d47q6ummcj7s73did8e0-a/flask_login_6tjz")
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "12345")
 
 db = SQLAlchemy(app)
