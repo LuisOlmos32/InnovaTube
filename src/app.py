@@ -18,6 +18,10 @@ app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "12345")
 db = SQLAlchemy(app)
 login_manager_app = LoginManager(app)
 
+with app.app_context():
+    db.create_all()
+
+
 # API de YouTube
 YOUTUBE_API_KEY = "AIzaSyA48YcvnD7W3UhpBtWd3IyNpKCP6uJbZA4"
 
