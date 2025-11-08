@@ -22,7 +22,7 @@ app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "12345")
 
 db = SQLAlchemy(app)
 login_manager_app = LoginManager(app)
-
+from models.entities.User import User 
 # Crear tablas si no existen
 with app.app_context():
     db.create_all()
